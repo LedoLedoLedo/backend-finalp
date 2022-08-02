@@ -1,4 +1,4 @@
-var express = require('express');
+var express = require("express");
 var router = express.Router();
 //password restriction packages
 
@@ -12,8 +12,8 @@ const { isAuthenticated } = require("../middlewear/auth");
 const saltrounds = 10;
 
 /* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
+router.get("/", function (req, res, next) {
+  res.send("respond with a resource");
 });
 
 router.post("/signup", async (req, res) => {
@@ -27,7 +27,7 @@ router.post("/signup", async (req, res) => {
       username: req.body.username,
       password: hashedPass,
     });
-      // res.json(newUser);
+    // res.json(newUser);
 
     // Create json webtoken
     /// create payload
@@ -79,12 +79,20 @@ router.post("/login", async (req, res) => {
   }
 });
 
+//Delete post
+router.delete("/delete", isAuthenticated, async (req, res) => {
+  try {
+    let deletedUser = await User.findByIdAndDelete(req.user.id, { new: true });
+    res.json(deletedUser);
+  } catch (err) {
+    res.status(400).json(err.message);
+  }
+});
+
 ////middlewear
 
 router.get("/login-test", isAuthenticated, (req, res) => {
-  
-  res.json({message: "You are logged in"})
+  res.json(req.user);
 });
-
 
 module.exports = router;

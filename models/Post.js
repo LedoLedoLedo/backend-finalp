@@ -2,11 +2,11 @@ const mongoose = require("mongoose");
 const { post } = require("../routes");
 
 const postSchema = new mongoose.Schema({
-  title: {
-    type: String,
-    required: true,
-    // unique: true,
-  },
+  // title: {
+  //   type: String,
+  //   required: true,
+  //   // unique: true,
+  // },
   content: {
     type: String,
     required: true,

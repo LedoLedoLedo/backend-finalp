@@ -55,12 +55,16 @@ router.post("/login", async (req, res) => {
   try {
     let foundUser = await User.findOne({ username: req.body.username });
     if (!foundUser) {
-      return res.json({ message: "username or password incorrect" });
+      return res
+        .status(400)
+        .json({ message: "username or password incorrect" });
     }
     const isMatch = bcrypt.compareSync(req.body.password, foundUser.password);
     console.log(isMatch);
     if (!isMatch) {
-      return res.json({ message: "username or password incorrect" });
+      return res
+        .status(400)
+        .json({ message: "username or password incorrect" });
     }
     const payload = {
       username: foundUser.username,

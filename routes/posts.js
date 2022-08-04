@@ -45,7 +45,7 @@ router.post("/create", isAuthenticated, async (req, res) => {
   try {
     let createdPost = await Post.create(
       {
-        title: req.body.title,
+        // title: req.body.title,
         content:req.body.content,
         creatorId:req.user.id,
       }

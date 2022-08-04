@@ -13,9 +13,11 @@ router.get("/", function (req, res, next) {
 
 router.get("/all", async (req, res) => {
   try {
-    let allPosts = Post.find();
+    let allPosts = await Post.find();
+    console.log(allPosts)
     res.json(allPosts);
   } catch (err) {
+    // console.log(err)
     res.status(400).json(err.message);
   }
 });

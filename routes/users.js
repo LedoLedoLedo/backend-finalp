@@ -83,6 +83,10 @@ router.post("/login", async (req, res) => {
   }
 });
 
+////my profile 
+router.get("/profile",function(req, res){
+  res.json ({message:"this is where your pictures goes"})
+})
 //Delete post
 router.delete("/delete", isAuthenticated, async (req, res) => {
   try {
@@ -92,6 +96,8 @@ router.delete("/delete", isAuthenticated, async (req, res) => {
     res.status(400).json(err.message);
   }
 });
+
+/// profile/:userId
 
 ////middlewear
 

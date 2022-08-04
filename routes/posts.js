@@ -13,7 +13,9 @@ router.get("/", function (req, res, next) {
 
 router.get("/all", async (req, res) => {
   try {
-    let allPosts = await Post.find();
+    let allPosts = await Post.find().populate(
+      "creatorId"
+    );
     console.log(allPosts)
     res.json(allPosts);
   } catch (err) {
@@ -73,6 +75,7 @@ router.post("/edit/:postId", isAuthenticated, async (req, res) => {
   } catch (err) {
     res.status(400).json(err.message);
   }
+
 });
 
 //Delete post

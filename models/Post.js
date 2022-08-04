@@ -12,14 +12,14 @@ const postSchema = new mongoose.Schema({
     required: true,
     minlength: 4,
   },
-  creatorId:{
-    type:mongoose.Types.ObjectId,
-    ref:"User",
+  creatorId: {
+    type: mongoose.Types.ObjectId,
+    ref: "User",
   },
-  username:{
+  username: {
     type: String,
-    ref:"User"
-  }
+    ref: "User",
+  },
 });
 
 const Post = mongoose.model("Post", postSchema);
